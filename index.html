@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan Perkawinan KUA Margadana</title>
+    <style>
+        /* CSS Reset and Basic Styling */
+        :root {
+            --primary-color: #00695C; /* Warna hijau tua khas Kemenag */
+            --secondary-color: #F5F5F5; /* Abu-abu muda untuk background */
+            --dark-color: #333;
+            --light-color: #fff;
+            --accent-color: #FFC107; /* Kuning untuk aksen */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        /* Header and Navigation */
+        header {
+            background: var(--primary-color);
+            color: var(--light-color);
+            padding: 0.75rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-title img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-title h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s;
+        }
+
+        header nav ul li a:hover {
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 105, 92, 0.8), rgba(0, 105, 92, 0.8)), url('https://images.unsplash.com/photo-1597157639073-692849c02425?q=80&w=1470&auto-format&fit=crop') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-color);
+            padding: 0 20px;
+            margin-top: 79px;
+        }
+
+        #hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 0.5rem auto 0;
+        }
+
+        .card {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Alur Pendaftaran Section (Sama seperti sebelumnya) */
+        #alur .alur-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem; text-align: center;
+        }
+        #alur .alur-step {
+            background: var(--light-color); padding: 2rem; border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        #alur .alur-step:hover { transform: translateY(-10px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+        .alur-step .step-number {
+            background: var(--primary-color); color: var(--light-color); width: 50px; height: 50px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem;
+        }
+        .alur-step h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
+
+        /* Syarat Pendaftaran Section (Sama seperti sebelumnya) */
+        #syarat .syarat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        #syarat .syarat-grid ul { list-style-type: none; }
+        #syarat .syarat-grid li {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300695C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>') no-repeat left center;
+            padding-left: 35px; margin-bottom: 0.8rem; font-size: 1.1rem;
+        }
+        .syarat-keterangan {
+            margin-top: 2rem; background: #e0f2f1; padding: 1.5rem;
+            border-left: 5px solid var(--primary-color); border-radius: 5px;
+        }
+        .syarat-keterangan p { font-style: italic; }
+
+        /* [BARU] Styling Jadwal Scrolling Otomatis */
+        .scrolling-jadwal-container {
+            height: 350px; /* Tinggi area scroll */
+            overflow: hidden;
+            position: relative;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 1rem;
+        }
+
+        .scrolling-jadwal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            /* Animasi akan ditambahkan di sini oleh CSS */
+            animation: scroll-up 30s linear infinite;
+        }
+
+        /* Jeda animasi saat mouse hover */
+        .scrolling-jadwal-container:hover .scrolling-jadwal-list {
+            animation-play-state: paused;
+        }
+
+        .jadwal-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .jadwal-item:last-child {
+            border-bottom: none;
+        }
+
+        .jadwal-item .date-time {
+            flex-shrink: 0;
+            text-align: center;
+            margin-right: 1.5rem;
+            width: 120px;
+        }
+        .jadwal-item .date-time .day {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .jadwal-item .date-time .time {
+            font-size: 1rem;
+            color: var(--dark-color);
+        }
+
+        .jadwal-item .details {
+            flex-grow: 1;
+        }
+        .jadwal-item .details .couple {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .jadwal-item .details .location {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Keyframes untuk animasi scroll */
+        @keyframes scroll-up {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-50%); /* Scroll hingga setengah tinggi total (karena konten diduplikasi) */
+            }
+        }
+        
+        .jadwal-info {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        /* [AKHIR BARU] */
+        
+        /* Kontak Section */
+        #kontak .kontak-info { text-align: center; }
+        #kontak .kontak-info p { font-size: 1.1rem; margin-bottom: 1rem; }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-title img { height: 40px; gap: 10px; }
+            .logo-title h1 { font-size: 1.2rem; }
+            header nav ul { display: none; }
+            #hero { height: 50vh; margin-top: 67px; }
+            #hero h2 { font-size: 2rem; }
+            #hero p { font-size: 1rem; }
+            #syarat .syarat-grid { grid-template-columns: 1fr; }
+            .jadwal-item .date-time { width: 100px; margin-right: 1rem; }
+            .jadwal-item .date-time .day { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo-title">
+                <img src="">
+                <h1>KUA MARGADANA</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#alur">Alur Pendaftaran</a></li>
+                    <li><a href="#syarat">Syarat</a></li>
+                    <li><a href="#jadwal">Jadwal</a></li>
+                    <li><a href="https://drive.google.com/" target="_blank">Arsip Nikah</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h2>Pusat Informasi Layanan Perkawinan</h2>
+            <p>Kantor Urusan Agama Kecamatan Margadana</p>
+        </section>
+
+        <section id="alur">
+            <div class="container">
+                <h2 class="section-title">Alur Pendaftaran Nikah</h2>
+                <div class="alur-container">
+                    <div class="alur-step"><div class="step-number">1</div><h3>Pengantar RT/RW</h3><p>Catin meminta surat pengantar ke Ketua RT/RW setempat untuk dibawa ke kelurahan.</p></div>
+                    <div class="alur-step"><div class="step-number">2</div><h3>Kantor Kelurahan</h3><p>Mengurus surat pengantar nikah (Model N1, N2, N4, dll.) di kantor kelurahan/desa.</p></div>
+                    <div class="alur-step"><div class="step-number">3</div><h3>Datang ke KUA</h3><p>Membawa semua berkas dari kelurahan ke KUA untuk pendaftaran dan verifikasi data.</p></div>
+                    <div class="alur-step"><div class="step-number">4</div><h3>Pemeriksaan Berkas</h3><p>Petugas KUA akan memeriksa kelengkapan berkas. Catin akan mendapat bimbingan perkawinan.</p></div>
+                    <div class="alur-step"><div class="step-number">5</div><h3>Penetapan Jadwal</h3><p>Menentukan dan menyepakati jadwal serta lokasi pelaksanaan akad nikah dengan petugas KUA.</p></div>
+                    <div class="alur-step"><div class="step-number">6</div><h3>Akad Nikah</h3><p>Pelaksanaan akad nikah sesuai jadwal, baik di kantor KUA maupun di luar kantor.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="syarat" style="background-color: #fff;">
+            <div class="container">
+                <h2 class="section-title">Syarat Administrasi Pernikahan</h2>
+                <div class="card">
+                    <div class="syarat-grid">
+                        <div><h3>Berkas Calon Suami</h3><ul><li>Surat pengantar nikah dari Kelurahan (N1, N2, N4).</li><li>Fotokopi KTP Elektronik.</li><li>Fotokopi Kartu Keluarga (KK).</li><li>Fotokopi Akta Kelahiran / Ijazah.</li><li>Pas Foto Latar Biru 2x3 & 4x6.</li><li>Surat Izin Orang Tua (N5) jika < 21 thn.</li><li>Surat Rekomendasi Nikah jika dari luar kecamatan.</li></ul></div>
+                        <div><h3>Berkas Calon Istri</h3><ul><li>Surat pengantar nikah dari Kelurahan (N1, N2, N4).</li><li>Fotokopi KTP Elektronik.</li><li>Fotokopi Kartu Keluarga (KK).</li><li>Fotokopi Akta Kelahiran / Ijazah.</li><li>Pas Foto Latar Biru 2x3 & 4x6.</li><li>Surat Izin Orang Tua (N5) jika < 21 thn.</li><li>Surat Rekomendasi Nikah jika dari luar kecamatan.</li></ul></div>
+                    </div>
+                    <div class="syarat-keterangan"><p><strong>Catatan Penting:</strong> Pendaftaran nikah dilakukan paling lambat 10 hari kerja sebelum tanggal pelaksanaan akad.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jadwal">
+            <div class="container">
+                <h2 class="section-title">Jadwal Akad Nikah</h2>
+                <p style="text-align: center; max-width: 700px; margin: -1.5rem auto 2rem;">Berikut adalah jadwal akad nikah yang akan dilaksanakan satu minggu terakhir.</p>
+
+                <div class="scrolling-jadwal-container">
+                    <ul class="scrolling-jadwal-list">
+                        <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">RABU, 01 OKTOBER 2025</div>
+                                <div class="time">09:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">RAMDAN & TRIYANAH</div>
+                                <div class="location">Lokasi: KEL. KALINYAMAT KULON RT. 7 RW. 3 KEC. MARGADANA KOTA TEGAL</div>
+                            </div>
+                        </li>
+                        <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">KAMIS, 02 OKTOBER 2025</div>
+                                <div class="time">09:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">TACHYUDIN & ROFIKOH</div>
+                                <div class="location">Lokasi: BALAI NIKAH KUA MARGADANA</div>
+                            </div>
+                        </li>
+                        <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">JUM'AT, 03 OKTOBER 2025</div>
+                                <div class="time">08:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">EDWIN HILMAN MAULANA & IZZA NUR IZZATI</div>
+                                <div class="location">Lokasi: KEL. SUMURPANGGANG RT 05 RW 02 KEC MARGADANA KOTA TEGAL</div>
+                            </div>
+                        </li>
+                         <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">JUM'AT, 03 OKTOBER 2025</div>
+                                <div class="time">09:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">ANDRIYAN AJI PERMONO & NANDA NUR BUDIATI</div>
+                                <div class="location">Lokasi: KEL. MARGADANA RT. 2 RW. 10 KEC. MARGADANA KOTA TEGAL</div>
+                            </div>
+                        </li>
+                        <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">JUM'AT, 03 OKTOBER 2025</div>
+                                <div class="time">16:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">ALI MUBAROK & WIDYA EKA APRILIANI</div>
+                                <div class="location">Lokasi: KEL. KRANDON RT 06 RW 01 KEC MARGADANA KOTA TEGAL</div>
+                            </div>
+                        </li>
+                        <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">SABTU, 04 OKTOBER 2025</div>
+                                <div class="time">08:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">WENDI SETIAWAN & WARYUTI</div>
+                                <div class="location">Lokasi: KEL. MARGADANA RT 03 RW 03 KEC MARGADANA KOTA TEGAL</div>
+                            </div>
+                        </li>
+                        <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">SABTU, 04 OKTOBER 2025</div>
+                                <div class="time">09:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">SODIKIN & WINDI MASTUKHA</div>
+                                <div class="location">Lokasi: KEL. KALIGANGSA RT. 7 RW. 3 KEC. MARGADANA KOTA TEGAL</div>
+                            </div>
+                        </li>
+                        <li class="jadwal-item">
+                            <div class="date-time">
+                                <div class="day">SABTU, 04 OKTOBER 2025</div>
+                                <div class="time">11:00 WIB</div>
+                            </div>
+                            <div class="details">
+                                <div class="couple">NUR ROFIQ & RISKA AINUN HANIPAH</div>
+                                <div class="location">Lokasi: KEL. KRANDON RT. 6 RW. 1 KEC. MARGADANA KOTA TEGAL</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p class="jadwal-info">
+                    *Jadwal dapat berubah. Mohon konfirmasi langsung ke nomor WhatsApp tercantum untuk informasi final.
+                </p>
+            </div>
+        </section>
+
+        <section id="kontak" style="background-color: #fff;">
+            <div class="container">
+                <h2 class="section-title">Hubungi Kami</h2>
+                <div class="kontak-info">
+                    <p><strong>Alamat:</strong> Jl. Purbalingga No.5, Margadana, Kec. Margadana, Kota Tegal, Jawa Tengah 52143</p>
+                    <p><strong>Telepon:</strong> (0283) 311781</p>
+                    <p><strong>WhatsApp:</strong> 0852-1303-1997</p>
+                    <p><strong>Email:</strong> kuamargadana@gmail.com</p>
+                    <p><strong>Jam Layanan Kantor:</strong><br>
+                        Senin - Kamis: 08:00 - 16:00 WIB<br>
+                        Jumat: 08:00 - 16:30 WIB
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Kantor Urusan Agama Kecamatan Margadana. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scroller = document.querySelector('.scrolling-jadwal-list');
+            const items = Array.from(scroller.children);
+            
+            // Duplikasi setiap item untuk membuat loop yang mulus
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                scroller.appendChild(clone);
+            });
+        });
+    </script>
+</body>
+</html>
